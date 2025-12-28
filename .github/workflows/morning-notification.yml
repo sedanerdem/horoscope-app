@@ -1,0 +1,25 @@
+name: Morning Notification
+
+on:
+  schedule:
+    # 07:00 UTC = 10:00 TRT
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Send Notification
+        run: node scripts/sendMorningNotification.js

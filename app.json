@@ -3,6 +3,7 @@
     "name": "Burc",
     "slug": "Burc",
     "version": "1.0.0",
+    "scheme": "burc",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,6 +26,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "016deb6e-9073-46fa-9c11-b87ecac2f7f6"
+      }
     }
   }
 }

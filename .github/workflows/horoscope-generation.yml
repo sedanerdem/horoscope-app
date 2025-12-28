@@ -1,0 +1,27 @@
+name: Daily Horoscope Generation
+
+on:
+  schedule:
+    # 00:00 UTC = 03:00 TRT (Turkey Time)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  generate-horoscopes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Run Generation Script
+        run: node scripts/generateHoroscopes.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
